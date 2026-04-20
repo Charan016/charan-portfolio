@@ -739,7 +739,11 @@
 
         <div class="form-actions">
           <button class="submit-btn" type="submit">Send message</button>
-          <a class="ghost" href="mailto:charannerella2004@gmail.com">Email me</a>
+          <a class="ghost" 
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=charannerella2004@gmail.com"
+            target="_blank">
+            Email me
+          </a>
         </div>
       </form>
     </section>
@@ -750,7 +754,34 @@
     </footer>
   </div>
 
- 
+  <script>
+      document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      // Show feedback
+      alert("Redirecting you to email...");
+
+      const subject = encodeURIComponent("Portfolio contact from " + name);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\n${message}`
+      );
+
+      // Gmail redirect (better than mailto)
+      const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=charannerella2004@gmail.com&su=${subject}&body=${body}`;
+
+      window.open(gmailURL, "_blank");
+    });
+    </script>
+
   <script>
       const sections = document.querySelectorAll("section");
       const navLinks = document.querySelectorAll("nav a");
